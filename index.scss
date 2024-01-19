@@ -1,0 +1,253 @@
+:root {
+
+  --body-background: #c5e4e7;
+  --input-background: #f3f8fb;
+  --default-background: white;
+  --primary-background: #00474b;
+  --secondary-background: #27c2ad;
+}
+
+*, *::before, *::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100vh;
+  font-size: 62.5%;
+  font-family: sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  font-size: 1.6rem;
+  flex-direction: column;
+  background-color: var(--body-background);
+
+  button {
+    border: none;
+    text-align: center;
+    border-radius: 1rem;
+
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  .title {
+    word-break: break-all;
+    letter-spacing: .5rem;
+    width: 11rem;
+    text-align: center;
+    font-weight: bold;
+
+  }
+
+  .container {
+    display: flex;
+    width: 60%;
+    min-width: 80rem;
+    height: 50rem;
+    background-color: var(--default-background);
+    padding: 3rem;
+    border-radius: 1rem;
+
+    .result-container, .calc-container {
+      padding: 2rem;
+      border-radius: inherit;
+      height: 100%;
+      width: 50%;
+    }
+
+    // Styling for calculation
+    .calc-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      input {
+        display: block;
+        width: 100%;
+      }
+
+      div {
+        position: relative;
+
+        p:first-child, label:first-child {
+          margin-bottom: 1rem;
+        }
+
+        label:first-child {
+          display: block;
+        }
+
+        #bill, #num-people, #custom-tip {
+          display: block;
+          text-align: right;
+          padding: 0 1rem;
+          font-size: 1.8rem;
+          height: 100%;
+          background-color: var(--input-background);
+          border: none;
+          cursor: pointer;
+          outline: none;
+          border-radius: 1rem;
+        }
+
+        #bill:focus, #num-people:focus, #custom-tip:focus {
+          outline: 2px solid #7ed7ca;
+        }
+
+        #custom-tip {
+          text-align: center;
+        }
+
+        #num-people:invalid {
+          border: none;
+          outline: 1px solid red;
+        }
+
+        #dollar, #people {
+          position: absolute;
+          margin-top: 1.5rem;
+          margin-left: 1.5rem;
+        }
+      }
+
+      .select-tip {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      button {
+        padding: 1rem 2rem;
+        text-align: center;
+        background-color: #00474b;
+        color: white;
+        font-size: 1.8rem;
+      }
+
+      button.active {
+        background-color: var(--secondary-background);
+        color: black;
+      }
+
+      .error-p {
+        position: absolute;
+        right: 0;
+        top: 0;
+        color: red;
+        display: none;
+      }
+
+      .error-p.active {
+        display: initial;
+      }
+    }
+
+    // Styling for result container;
+    .result-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--primary-background);
+
+      div {
+        width: 100%;
+
+        #tip, #total {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          margin-bottom: 2rem;
+
+          p:first-child {
+            color: white;
+            font-size: 2rem;
+
+          }
+
+          p:last-child {
+            color: #c5e4e7;
+            font-size: 1.7rem;
+
+          }
+
+          #tip-pp, #total-pp {
+            font-size: 3rem;
+            color: var(--secondary-background);
+          }
+        }
+      }
+
+      button {
+        width: 90%;
+        background-color: #27c2ad;
+        height: 4rem;
+        font-size: 1.8rem;
+      }
+
+      button:disabled {
+        background-color: #0d686d;
+
+      }
+    }
+  }
+
+}
+
+@media screen and (max-width: 900px) {
+  body {
+    h1 {
+      margin: 3rem 0;
+    }
+
+    .container {
+      flex-direction: column;
+      flex: 1;
+      min-width: 100%;
+      padding: 2rem;
+
+      .calc-container, .result-container {
+        width: 100%;
+      }
+
+      .calc-container {
+        flex: 1;
+        padding: 0;
+        div {
+          #bill, #num-people {
+            height: 4rem;
+          }
+          #dollar, #person {
+            margin-top: 1.2rem;
+          }
+        }
+        .select-tip {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .result-container {
+        padding: 3rem;
+
+        flex: 1 1 10rem;
+      }
+    }
+  }
+
+}
